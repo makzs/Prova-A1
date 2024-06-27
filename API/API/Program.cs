@@ -36,8 +36,12 @@ app.MapPost("/categoria/cadastrar", ([FromServices] AppDataContext ctx, [FromBod
 
 //ENDPOINTS DE TAREFA
 //GET: http://localhost:5273/tarefas/listar
-app.MapGet("/tarefas/listar", ([FromServices] AppDataContext ctx) =>
+app.MapGet("/tarefas/listar", async ([FromServices] AppDataContext ctx) =>
 {
+    var emprestimos = await ctx.Tarefas
+                              .Include(e => e.Categoria)
+                              .ToListAsync();
+
     if (ctx.Tarefas.Any())
     {
         return Results.Ok(ctx.Tarefas.ToList());
