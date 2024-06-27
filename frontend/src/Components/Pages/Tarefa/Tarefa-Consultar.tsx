@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tarefa } from "../../../Models/Tarefa";
+import { Link } from "react-router-dom";
 
 function TarefaListar(){
 
@@ -46,6 +47,7 @@ function TarefaListar(){
                         <th>Categoria</th>
                         <th>categoriaId</th>
                         <th>status</th>
+                        <th>Alterar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +60,9 @@ function TarefaListar(){
                             <td>{tarefa.categoria?.nome}</td>
                             <td>{tarefa.categoriaId}</td>
                             <td>{tarefa.status}</td>
+                            <td>
+                                <Link to={`/pages/tarefas/alterar/${tarefa.tarefaId}`}>Alterar</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
